@@ -1,0 +1,270 @@
+// Banner Styling Starts Here
+.banner {
+  position: relative;
+  width: 100%;
+  height: 622px;
+  overflow: hidden;
+
+  @include media(420px) { height: 500px; }
+  
+  @at-root {
+    .slider {
+      height: 100%;
+
+      &__list {
+        height: 100%;
+        display: none;
+        position: relative;
+
+        &.slider__list--active { display: block; }
+
+        &::after {
+          @include pseudo;
+          top: 0;
+          left: 0;
+          background-color: $black;
+          opacity: .3;
+        }
+
+        & figure{
+         height: 100%;
+
+         & img { height: 100%; }
+        }
+      }
+
+      &__content {
+        position: absolute;
+        top: 34.8%;
+        left: 50%;
+        text-align: center;
+        @include transform(translateX(-50%));
+        z-index: zIndex(slider__content);
+        @include media(995px)  { top: 20%; }
+
+        &__description {
+          margin-bottom: 25px;
+          position: relative;
+          color: #8ea6a7;
+          @include font(14px, 500);
+          letter-spacing: 2.8px;
+
+          &::before {
+            @include pseudo($width: 50%, $height: 1.2px);
+            bottom: -25px;
+            left: 50%;
+            background-color: #748d90;
+            @include transform(translateX(-50%));
+            @include media(995px)  { font-size: 50px; }
+          }
+        }
+
+        &__heading {
+          color: $white;
+          @include font(96px, 300);
+          @include media(995px)  {
+          font-size: 50px;
+        }
+        }
+      }
+    }
+  }
+
+  .navigator {
+    position: absolute;
+    bottom: 22px;
+    left: 50%;
+    @include transform(translateX(-50%));
+
+    &__link {
+      width: 11.2px;
+      height: 11.2px;
+      border-radius: 50%;
+      @include margin(0, 6px);
+      background-color: $navigator-color;
+      text-indent: -999999px;
+
+      &.navigator__link--active { background-color: $white; }
+    }
+  }
+}
+// Banner Styling Ends Here
+
+// About Styling Starts Here
+.about {
+	@include padding-all(padding, 80px, 0, 90px, 0);
+	background-color: $background-color;
+	
+	&__block {
+    @include flexbox($align: flex-start, $justify: space-between);
+    flex-wrap: wrap;
+    @include media(778px)  { justify-content:  center; }
+
+		&__list {
+      width: 47.6%;
+      @include media(778px)  {
+        width: 80%;
+        margin-bottom: 20px;
+      }
+      @include media(420px) { width: 90%; }
+    }
+
+		&__content {
+			@include padding(40px);
+			background-color: $white;
+      text-align: center;
+      @include media(420px) {
+        @include padding(20px);
+      }
+		}
+
+		&__spaced__heading {
+			margin-bottom: 14px;
+			display: block;
+			position: relative;
+			color: $spaced-heading;
+			@include font(11.3px, 500);
+      letter-spacing: 2.5px;
+      @include media(375px) {
+        font-size: 8px;
+      }
+
+			&::after {
+				@include pseudo($width: 50%, $height: 1px);
+				bottom: -11px;
+				left: 50%;
+				background-color: $spaced-heading--after;
+				@include transform(translateX(-50%));
+			}
+		}
+
+		&__heading {
+      color: #020508;
+			@include font(24px, 300);
+      @include media(375px) {
+        font-size: 16px;
+      }
+		}
+
+		&__description {
+			@include padding-all(margin, 26px, 0, 28px, 0);
+			color: $spaced-heading;
+			font-size: 13.5px;
+			line-height: 23px;
+      text-align: left;
+      @include media(375px) {
+        font-size: 10px;
+        @include margin(15px, 0);
+      }
+		}
+
+		&__link {
+			@include padding(8px, 17px);
+			color: $link-color;
+			font-size: 13.5px;
+			border: 2px solid $border-color;
+			
+			@include hover {
+				background-color: $border-color;
+				color: $black;
+			}
+		}
+	}
+}
+// About Styling Ends Here
+
+// Details Styling Starts Here
+.details {
+	@include padding-all(padding, 80px, 0, 70px, 0);
+	position: relative;
+  background: url("../images/bg.jpg") no-repeat center/cover;
+  background-attachment: fixed;
+  text-align: center;
+	opacity: .99;
+	
+	&::before {
+		@include pseudo;
+		top: 0;
+		left: 0;
+		background-color: $black;
+		opacity: .5;
+		pointer-events: none;
+		z-index: -1;
+	}
+
+	&__spaced__heading {
+		@extend .about__block__spaced__heading;
+		color: rgba(255, 255, 255, 0.363);
+		
+		&::after {
+			width: 55%;
+			height: 1.2px;
+			bottom: -13px;
+			background-color: rgba(255, 255, 255, 0.315);
+		}
+	}
+
+	&__heading {
+		margin-top: 25px;
+		font-weight: 400;
+		color: #F7F6F6;
+		@extend .about__block__heading;
+	}
+}
+// Details Styling Ends Here
+
+// Testimonial Styling Starts Here
+.testimonial {
+	@include padding-all(padding, 82px,0 , 35px,0 );
+  background-color: $background-color;
+	text-align: center;
+
+	& .wrapper { width: 100%; }
+
+	&__spaced__heading {
+		margin-bottom: 20px;
+		@extend .about__block__spaced__heading;
+
+		&::after {
+		height: 1.4px;
+		bottom: -14px;
+		}
+	}
+
+	&__heading {
+		@extend .details__heading;
+		margin-top: 22px;
+		color: $black;
+		font-weight: 300;
+	}
+
+	&__block {
+		@include flexbox($align: stretch, $justify: space-between);
+		flex-wrap: wrap;
+    margin-top: 35px;
+    @include media(775px) { justify-content: center; }
+	}
+	
+	&__list {
+		width: 47.5%;
+		height: 275px;
+		margin-bottom: 56px;
+		position: relative;
+    background-color: $white;
+    @include media(775px) {
+      width: 90%;
+      margin-bottom: 30px;
+    }
+
+		& figure {
+			position: absolute;
+			top: 16px;
+			left: 15px;
+			right: 15px;
+			bottom: 15px;
+
+			& img { height: 100%; }
+		}
+	}
+}
+// Testimonial Styling Ends Here

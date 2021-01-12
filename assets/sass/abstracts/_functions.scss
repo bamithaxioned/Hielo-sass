@@ -1,0 +1,11 @@
+$z-indexes:  header__menu, navigation, header, slider__content;
+
+// ===============================Z-Index
+@function zIndex($name, $index-list: $z-indexes) {
+  @if index($z-indexes, $name) {
+    @return length($z-indexes) - index($z-indexes, $name) + 1;
+  } @else {
+    @warn "#{$name} not Found";
+  }
+  @return null;
+}

@@ -1,0 +1,42 @@
+.footer {
+	background-color: $black;
+	@include padding-all(padding, 41px, 0, 57px,0);
+
+	& .wrapper {
+		@include flexbox;
+		@include flex-direction;
+	}
+
+	.social {
+		@include padding-all(margin, 20px, 0, 41px, 0);
+
+		&__icon:nth-child(1) .social__link::before { content: "\f099";}
+		&__icon:nth-child(2) .social__link::before { content: "\f09a";}
+		&__icon:nth-child(3) .social__link::before { content: "\f16d";}
+		&__icon:nth-child(4) .social__link::before { content: "\f003";}
+
+		&__link {
+			@include margin(0, 7px);
+			text-indent: -999999px;
+
+			&::before {
+				content: "";
+				color: $footer-color;
+				font-family: "FontAwesome";
+				font-size: 27px;
+				float: right;
+				clear: both;
+				text-indent: 0;
+			}
+
+			@include hover {
+				&::before { color: $white; }
+			}
+		}
+	}
+
+	&__heading {
+		color: $footer-color;
+		@include font(12px, 500);
+	}
+}

@@ -1,0 +1,152 @@
+// align item center
+@mixin center($width) {
+	width: $width;
+	margin: 0 auto;
+}
+
+// Before and After
+@mixin pseudo($content: "", $position: absolute, $display: block, $width:100%, $height: 100%) {
+  content: quote($content);
+  width: $width;
+  height: $height;
+  position: $position;
+  display: $display;
+}
+
+// Padding and Margin
+@mixin padding-all($content, $top, $right, $bottom, $left) {
+  #{$content}: $top $right $bottom $left;
+}
+
+// Linear Gradient
+@mixin gradient($type, $first-clr, $second-clr) {
+  background: linear-gradient($type, $first-clr, $second-clr);
+}
+
+// Hover 
+@mixin hover($time: 0.4) {
+    transition: all $time + s;
+    &:hover {
+      @content;
+    }
+  }
+  
+// Active
+@mixin active {
+    &.active {
+        @content;
+    }
+}
+
+// Flexbox
+@mixin flexbox($align: center, $justify: center) {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    // For Align Items
+    @if $align == "baseline" or $align == "center" {
+      -webkit-box-align: $align;-ms-flex-align: $align;align-items: $align;
+    }@else if $align == "flex-start" {
+      -webkit-box-align: start;-ms-flex-align: start;align-items: flex-start;
+    } @else if $align == "flex-end" {
+      -webkit-box-align: end;-ms-flex-align: end;align-items: flex-end;
+    } @else {
+      -webkit-box-align: stretch;-ms-flex-align: stretch;align-items: stretch;
+    }
+    // For Justify Content
+    @if $justify == "center" or $justify == "left" or $justify == "right" or $justify == "space-evenly" or $justify == "end" or $justify == "start" or $justify == "last baseline" or $justify == "first baseline" or justify == "safe" or $justify == "last baseline" or $justify == "first baseline" or $justify == "safe" $justify == "unsafe" {
+      -webkit-box-pack: $justify;-ms-flex-pack: $justify;justify-content: $justify;
+    } @else if $justify == "space-between" {
+      -webkit-box-pack: justify;-ms-flex-pack: justify;justify-content: space-between;
+    } @else if $justify == "space-around" {
+      -ms-flex-pack: distribute;justify-content: space-around;
+    } @else if $justify == "flex-start" {
+      -webkit-box-pack: start;-ms-flex-pack: start;justify-content: flex-start;
+    } @else if $justify == "flex-end" {
+      -webkit-box-pack: end;-ms-flex-pack: end;justify-content: flex-end;
+    } @else {
+      -webkit-box-pack: stretch;-ms-flex-pack: stretch;justify-content: stretch;
+    }
+	}
+	
+	// FontSize
+	@mixin font($size: 16px, $weight: 400, $family: unquote("'Poppins', sans-serif")) {
+		font-size: $size;
+		font-weight: $weight;
+		font-family: $family;
+	}
+  // Transform
+  @mixin translate($x, $y) {
+    -webkit-transform: translate($x, $y);
+    -ms-transform: translate($x, $y);
+    transform: translate($x, $y);
+  }
+
+  // Flexbox direction
+  @mixin flex-direction($value: column) {
+    @if ($value == "column") {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+    } @else if($value == "row") {
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+      flex-direction: row;
+    } @else if($value == "row-reverse") {
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+      flex-direction: row-reverse;
+    } @else if($value == "column-reverse") {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+      flex-direction: column-reverse;
+    }
+  }
+
+  // Responsive
+  @mixin media($width, $type: max) {
+    @media screen and (#{$type}-width: $width) {
+      @content;
+    }
+  }
+  
+  // Transition
+  @mixin transition($time: .5s) {
+    -webkit-transition: $time;
+    -o-transition: $time;
+    transition: $time;
+  }
+
+  @mixin margin($top, $left: $top) {
+    margin: $top $left;
+  }
+
+  @mixin padding($top, $left: $top) {
+    padding: $top $left;
+  }
+
+  @mixin paddin-margin($name, $value) {
+    #{$name}: $value;
+  }
+
+  @mixin ham-transform($y, $rotate) {
+    -webkit-transform: translateY($y) rotate($rotate);
+    -ms-transform: translateY($y) rotate($rotate);
+            transform: translateY($y) rotate($rotate);
+  }
+
+  @mixin ham-scale($scale) {
+    -webkit-transform: scale($scale);
+    -ms-transform: scale($scale);
+    transform: scale($scale);
+  }
+
+  @mixin transform($content) {
+    -webkit-transform: $content;
+    -ms-transform: $content;
+    transform: $content;
+  }

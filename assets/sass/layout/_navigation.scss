@@ -1,0 +1,34 @@
+.navigation {
+    width: 50%;
+    height: 100vh;
+    @include padding(30px);
+    @include flexbox($justify:space-around);
+    @include flex-direction;
+    position: absolute;
+    z-index: zIndex(navigation);
+    top: 0;
+    right: -51%;
+    background-color: $white;
+    box-shadow: 2px 2px 20px $black;
+    @include transition;
+    @include media(520px) {
+      width: 100%;
+      right: -101%;
+    }
+
+    &.navigation--active { 
+      right: 0;
+    }
+
+    &__link {
+      color: lighten($black, 40);
+      @include font(18px);
+      @include media(640px) {
+        font-size: 15px;
+      }
+      @include hover {
+        @include ham-scale(1.1);
+        color: $black;
+      }
+    }
+}
